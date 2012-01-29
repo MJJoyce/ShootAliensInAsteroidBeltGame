@@ -19,6 +19,11 @@ namespace ShootAliensInAsteroidBeltGame
         GraphicsDeviceManager graphics;
         SpriteBatch spriteBatch;
 
+        enum GameStates {Title, Playing, Dead, GameOver};
+        GameStates gameState = GameStates.Title;
+        Texture2D titleScreen;
+        Texture2D spriteSheet;
+
         public Game1()
         {
             graphics = new GraphicsDeviceManager(this);
@@ -40,14 +45,25 @@ namespace ShootAliensInAsteroidBeltGame
 
         /// <summary>
         /// LoadContent will be called once per game and is the place to load
+        ///
+        /// enum GameStates {Title, Playing, Dead, GameOver};
+        /// GameStates gameState = GameStates.Title;
+        /// Texture2D titleScreen;
+        /// Texture2D spriteSheet;
+        ///
+        /// enum GameStates {Title, Playing, Dead, GameOver};
+        /// GameStates gameState = GameStates.Title;
+        /// Texture2D titleScreen;
+        /// Texture2D spriteSheet;
         /// all of your content.
         /// </summary>
         protected override void LoadContent()
         {
-            // Create a new SpriteBatch, which can be used to draw textures.
             spriteBatch = new SpriteBatch(GraphicsDevice);
 
-            // TODO: use this.Content to load your game content here
+            titleScreen = Content.Load<Texture2D>(@"Textures\TitleScreen");
+            spriteSheet = Content.Load<Texutre2D>(@"Textures\spriteSheet");
+
         }
 
         /// <summary>
@@ -70,7 +86,20 @@ namespace ShootAliensInAsteroidBeltGame
             if (GamePad.GetState(PlayerIndex.One).Buttons.Back == ButtonState.Pressed)
                 this.Exit();
 
-            // TODO: Add your update logic here
+            switch (gameState)
+            {
+                case GameState.Title:
+                    break;
+
+                case GameState.Playing:
+                    break;
+
+                case GameState.Dead:
+                    break;
+
+                case GameState.GameOver:
+                    break;
+            }
 
             base.Update(gameTime);
         }
@@ -83,7 +112,32 @@ namespace ShootAliensInAsteroidBeltGame
         {
             GraphicsDevice.Clear(Color.CornflowerBlue);
 
-            // TODO: Add your drawing code here
+            spriteBatch.Begin();
+
+            if (gameState == GameStates.Title)
+            {
+                spriteBatch.Draw(
+                        titleScreen,
+                        new Rectangle(
+                            0,
+                            0,
+                            this.Window.ClientBounds.Width,
+                            this.Window.ClientBounds.Height),
+                        Color.White);
+            }
+
+            if ((gameState == GameStates.Playing) ||
+                (gameState == GameStates.Dead) ||
+                (gameState == GameStates.GameOver))
+            {
+            }
+
+            if (gameState == GameStates.GameOver)
+            {
+            }
+
+            spriteBatch.End();
+
 
             base.Draw(gameTime);
         }
