@@ -62,7 +62,7 @@ namespace ShootAliensInAsteroidBeltGame
             spriteBatch = new SpriteBatch(GraphicsDevice);
 
             titleScreen = Content.Load<Texture2D>(@"Textures\TitleScreen");
-            spriteSheet = Content.Load<Texutre2D>(@"Textures\spriteSheet");
+            spriteSheet = Content.Load<Texture2D>(@"Textures\SpriteSheet");
 
         }
 
@@ -88,16 +88,16 @@ namespace ShootAliensInAsteroidBeltGame
 
             switch (gameState)
             {
-                case GameState.Title:
+                case GameStates.Title:
                     break;
 
-                case GameState.Playing:
+                case GameStates.Playing:
                     break;
 
-                case GameState.Dead:
+                case GameStates.Dead:
                     break;
 
-                case GameState.GameOver:
+                case GameStates.GameOver:
                     break;
             }
 
